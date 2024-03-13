@@ -2,6 +2,7 @@ import streamlit as st
 import plotly.express as px
 from backend import get_data
 
+
 st.title("Weather Forecast for the Next Days")
 place = st.text_input("Place:")
 days = st.slider("Forecast Days", min_value=1, max_value=5,
@@ -19,12 +20,12 @@ if place:
 
         if option == "Temperature":
             temperature = [int(temp_value["main"]["temp"])/10 for temp_value in data_list]
-            figure = px.line(x = date, y = temperature, labels={"x": "Date", "y": "Temperature"})
+            figure = px.line(x=date, y=temperature, labels={"x": "Date", "y": "Temperature"})
             st.plotly_chart(figure)
 
         if option == "Sky":
             sky_type = [sky_value["weather"][0]["main"] for sky_value in data_list]
-            image_path ={
+            image_path = {
                 "Clear": "Images/clear.png",
                 "Cloud": "Images/cloud.png",
                 "Rain": "Images/rain.png",
